@@ -3,7 +3,17 @@ services:
   web:
     build: .
     ports:
-      - "5005:5000"
+      - "5000:5000"
     volumes:
       - .:/Flask_REST
-    
+  db:
+    image: mysql:5.7
+    build: .
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_HOST='root' # needs to be enclosed with quotes, connect from any host, this is must
+      - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+    network_mode: "host"

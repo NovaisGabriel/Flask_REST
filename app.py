@@ -8,7 +8,6 @@ import models
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 
-
 def create_app(db_url=None):
     app = Flask(__name__)
     app.config["API_TITLE"] = "Stores REST API"
@@ -19,7 +18,11 @@ def create_app(db_url=None):
     app.config[
         "OPENAPI_SWAGGER_UI_URL"
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or "sqlite:///data.db"
+    ## OLD SQLite:
+    # app.config["SQLALCHEMY_DATABASE_URI"] = db_url or "sqlite:///data.db"
+    ## New MySQL:
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or "mysql+pymysql://root:1234@localhost/flaskrest"
+
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["PROPAGATE_EXCEPTIONS"] = True
     db.init_app(app)
