@@ -1,6 +1,13 @@
-flask
-flask-sqlalchemy
+flask==3.1.0
 flask-smorest
 python-dotenv
-marshmallow
-pymysql
+sqlalchemy
+flask-sqlalchemy
+flask-jwt-extended
+passlib
+flask-migrate
+gunicorn
+psycopg2
+requests
+redis
+rq
